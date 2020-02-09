@@ -3,13 +3,14 @@ const socketio = require('socket.io');
 const http = require('http');
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 const PORT = process.env.PORT || 5000;
-
+const cors = require('cors');
 const router = require('./router');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-
+app.user(router);
+app.use(cors());
 io.on('connection', socket => {
   console.log('We have a new connection!!');
 
