@@ -9,7 +9,7 @@ const router = require('./router');
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-app.user(router);
+app.use(router);
 app.use(cors());
 io.on('connection', socket => {
   console.log('We have a new connection!!');
